@@ -12,6 +12,13 @@ const app = express()
 const static = require("./routes/static")
 
 
+// Index route
+app.get("/", function(req, res){
+  res.render("index", {title: "Home"})
+})
+
+
+
 /* ***********************
  * View Engine and Templates
  *************************/
