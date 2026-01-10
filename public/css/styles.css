@@ -1,6 +1,306 @@
-/******* Change Box Model ***************/
+/* =========================
+   RESET + VARIABLES
+   ========================= */
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+:root {
+  --teal: #0ea5b7;
+  --teal-dark: #0b7280;
+  --nav: #111827;
+  --text: #111827;
+  --muted: #374151;
+  --border: #d1d5db;
+}
+
+/* =========================
+   PAGE BACKGROUND
+   ========================= */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 19px;
+  /* ⬅️ bigger base text */
+  line-height: 1.45;
+  /* nicer readability */
+  color: var(--text);
+  background: url("/images/site/checkerboard.jpg") repeat;
+}
+
+/* =========================
+   WHITE "PAGE" CONTAINER
+   ========================= */
+.wrapper {
+  max-width: 1400px;
+  /* ⬅️ wider page */
+  width: calc(100% - 48px);
+  margin: 28px auto;
+  background: #ffffff;
+  border: 4px solid var(--teal);
+  border-radius: 8px;
+  padding: 26px 30px;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+.site-header {
+  padding: 8px 6px 14px;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-name {
+  font-size: 2.6rem;
+  /* ⬅️ bigger brand */
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.account-link {
+  font-size: 1rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.account-link:hover,
+.account-link:focus-visible {
+  text-decoration: underline;
+}
+
+/* =========================
+   NAVIGATION
+   ========================= */
+.site-nav {
+  background: var(--nav);
+  border-radius: 3px;
+  margin: 0 0 18px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  display: block;
+  padding: 14px 22px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  /* ⬅️ bigger nav text */
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* =========================
+   MAIN CONTENT
+   ========================= */
+.content {
+  padding: 0 14px;
+}
+
+.page-title {
+  margin: 0 0 16px;
+  font-size: 2.4rem;
+  /* ⬅️ bigger title */
+  font-weight: 800;
+}
+
+/* =========================
+   HERO (CAR + OVERLAY CARD)
+   ========================= */
+.hero {
+  position: relative;
+  margin-bottom: 34px;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 1100px;
+  /* ⬅️ bigger car */
+  height: auto;
+  display: block;
+  margin-left: auto;
+}
+
+.hero-card {
+  position: absolute;
+  left: 46px;
+  top: 110px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 3px;
+}
+
+.hero-title {
+  margin: 0 0 6px;
+  font-size: 1.45rem;
+  /* ⬅️ bigger */
+  font-weight: 800;
+  color: #0284c7;
+}
+
+.hero-list {
+  margin: 0 0 14px;
+  padding-left: 20px;
+  color: #0284c7;
+  font-weight: 700;
+  font-size: 1.1rem;
+  /* ⬅️ bigger */
+}
+
+.hero-button {
+  display: inline-block;
+  padding: 12px 18px;
+  background: var(--teal);
+  border: 2px solid var(--teal-dark);
+  color: #062a2f;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.hero-button:hover,
+.hero-button:focus-visible {
+  filter: brightness(0.95);
+}
+
+/* =========================
+   LOWER SECTION (UPGRADES + REVIEWS)
+   ========================= */
+.lower {
+  display: grid;
+  gap: 22px;
+}
+
+.section-title {
+  margin: 0 0 12px;
+  font-size: 1.45rem;
+  /* ⬅️ bigger */
+  font-weight: 800;
+}
+
+/* =========================
+   UPGRADES
+   ========================= */
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 22px;
+}
+
+.upgrade-item {
+  text-decoration: none;
+  color: #0b4a6b;
+  font-weight: 700;
+}
+
+.upgrade-box {
+  background: var(--teal);
+  border: 2px solid var(--teal-dark);
+  height: 110px;
+  /* ⬅️ bigger boxes */
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+}
+
+.upgrade-box img {
+  max-width: 74px;
+  /* ⬅️ bigger icons */
+  max-height: 74px;
+  display: block;
+}
+
+.upgrade-link {
+  text-decoration: underline;
+  font-size: 1.1rem;
+  /* ⬅️ bigger */
+}
+
+/* =========================
+   REVIEWS
+   ========================= */
+.review-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 1.1rem;
+  /* ⬅️ bigger */
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+.site-footer {
+  margin-top: 22px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* =========================
+   DESKTOP LAYOUT
+   ========================= */
+@media (min-width: 760px) {
+  .lower {
+    grid-template-columns: 1fr 1fr;
+    gap: 54px;
+    align-items: start;
+  }
+}
+
+/* =========================
+   MOBILE LAYOUT
+   ========================= */
+@media (max-width: 759px) {
+  body {
+    font-size: 16px;
+    /* keep mobile readable */
+  }
+
+  .wrapper {
+    width: calc(100% - 24px);
+    padding: 16px;
+    margin: 12px auto;
+  }
+
+  .site-name {
+    font-size: 2rem;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .hero-image {
+    max-width: none;
+    margin-left: 0;
+  }
+
+  /* On mobile, don't overlay the card */
+  .hero-card {
+    position: static;
+    background: transparent;
+    padding: 0;
+    margin-bottom: 12px;
+  }
 }
