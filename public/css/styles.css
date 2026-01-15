@@ -23,9 +23,7 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 19px;
-  /* ⬅️ bigger base text */
   line-height: 1.45;
-  /* nicer readability */
   color: var(--text);
   background: url("/images/site/checkerboard.jpg") repeat;
 }
@@ -35,7 +33,6 @@ body {
    ========================= */
 .wrapper {
   max-width: 1400px;
-  /* ⬅️ wider page */
   width: calc(100% - 48px);
   margin: 28px auto;
   background: #ffffff;
@@ -59,7 +56,6 @@ body {
 
 .site-name {
   font-size: 2.6rem;
-  /* ⬅️ bigger brand */
   font-weight: 800;
   text-decoration: none;
   color: var(--text);
@@ -99,7 +95,6 @@ body {
   text-decoration: none;
   font-weight: 700;
   font-size: 1.1rem;
-  /* ⬅️ bigger nav text */
 }
 
 .nav-link:hover,
@@ -117,7 +112,6 @@ body {
 .page-title {
   margin: 0 0 16px;
   font-size: 2.4rem;
-  /* ⬅️ bigger title */
   font-weight: 800;
 }
 
@@ -132,10 +126,10 @@ body {
 .hero-image {
   width: 100%;
   max-width: 1100px;
-  /* ⬅️ bigger car */
   height: auto;
   display: block;
   margin-left: auto;
+  /* desktop pushes right */
 }
 
 .hero-card {
@@ -150,7 +144,6 @@ body {
 .hero-title {
   margin: 0 0 6px;
   font-size: 1.45rem;
-  /* ⬅️ bigger */
   font-weight: 800;
   color: #0284c7;
 }
@@ -161,7 +154,6 @@ body {
   color: #0284c7;
   font-weight: 700;
   font-size: 1.1rem;
-  /* ⬅️ bigger */
 }
 
 .hero-button {
@@ -190,7 +182,6 @@ body {
 .section-title {
   margin: 0 0 12px;
   font-size: 1.45rem;
-  /* ⬅️ bigger */
   font-weight: 800;
 }
 
@@ -213,7 +204,6 @@ body {
   background: var(--teal);
   border: 2px solid var(--teal-dark);
   height: 110px;
-  /* ⬅️ bigger boxes */
   display: grid;
   place-items: center;
   margin-bottom: 8px;
@@ -221,7 +211,6 @@ body {
 
 .upgrade-box img {
   max-width: 74px;
-  /* ⬅️ bigger icons */
   max-height: 74px;
   display: block;
 }
@@ -229,7 +218,6 @@ body {
 .upgrade-link {
   text-decoration: underline;
   font-size: 1.1rem;
-  /* ⬅️ bigger */
 }
 
 /* =========================
@@ -239,7 +227,6 @@ body {
   margin: 0;
   padding-left: 20px;
   font-size: 1.1rem;
-  /* ⬅️ bigger */
 }
 
 /* =========================
@@ -265,18 +252,26 @@ body {
 }
 
 /* =========================
-   MOBILE LAYOUT
+   MOBILE / SMALL SCREENS
+   Matches your screenshot:
+   - hero card overlays car
+   - Reviews comes before Upgrades
+   - wrapper feels full-width
    ========================= */
 @media (max-width: 759px) {
   body {
     font-size: 16px;
-    /* keep mobile readable */
+    background: #ffffff;
+    /* mobile screenshot looks plain white */
   }
 
   .wrapper {
-    width: calc(100% - 24px);
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
     padding: 16px;
-    margin: 12px auto;
   }
 
   .site-name {
@@ -285,22 +280,75 @@ body {
 
   .page-title {
     font-size: 1.8rem;
+    margin-bottom: 10px;
   }
 
-  .section-title {
-    font-size: 1.2rem;
+  /* Nav fits nicely */
+  .nav-link {
+    padding: 12px 14px;
+    font-size: 1rem;
+  }
+
+  /* Hero: keep overlay but reposition for small screens */
+  .hero {
+    margin-bottom: 18px;
   }
 
   .hero-image {
-    max-width: none;
-    margin-left: 0;
+    max-width: 100%;
+    margin: 0 auto;
   }
 
-  /* On mobile, don't overlay the card */
   .hero-card {
-    position: static;
-    background: transparent;
-    padding: 0;
-    margin-bottom: 12px;
+    left: 14px;
+    top: 78px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .hero-title {
+    font-size: 1.2rem;
+  }
+
+  .hero-list {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  .hero-button {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+
+  /* Order: Reviews first, then Upgrades */
+  .reviews {
+    order: 1;
+  }
+
+  .upgrades {
+    order: 2;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+    margin-top: 14px;
+  }
+
+  /* Upgrades grid stays 2 columns like screenshot */
+  .upgrade-box {
+    height: 96px;
+  }
+
+  .upgrade-box img {
+    max-width: 64px;
+    max-height: 64px;
+  }
+
+  .review-list {
+    font-size: 1rem;
+  }
+
+  .site-footer {
+    font-size: 0.95rem;
   }
 }
