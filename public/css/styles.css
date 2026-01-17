@@ -287,11 +287,13 @@ body {
 /* =========================
    MOBILE / SMALL SCREENS
    Optimized for mobile responsiveness
+   NO CHECKERBOARD BACKGROUND
    ========================= */
 @media (max-width: 759px) {
   body {
     font-size: 16px;
     background: #ffffff;
+    /* Remove checkerboard for mobile */
   }
 
   .wrapper {
