@@ -257,12 +257,13 @@ body {
    - hero card overlays car
    - Reviews comes before Upgrades
    - wrapper feels full-width
+   - NO checkerboard background
    ========================= */
 @media (max-width: 759px) {
   body {
     font-size: 16px;
     background: #ffffff;
-    /* mobile screenshot looks plain white */
+    /* Remove checkerboard for mobile */
   }
 
   .wrapper {
