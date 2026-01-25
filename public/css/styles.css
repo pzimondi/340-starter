@@ -566,3 +566,80 @@ nav>ul>li>a.active {
 .error-fun p {
   margin: 6px 0;
 }
+
+/* ===== Vehicle Detail Page (W03) ===== */
+.vehicle-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-items: start;
+  margin-top: 16px;
+}
+
+.vehicle-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+.vehicle-panel {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  padding: 16px;
+  background: #fff;
+}
+
+.vehicle-badge {
+  margin: 0 0 10px;
+  color: #374151;
+  font-weight: 700;
+}
+
+.vehicle-price .label {
+  display: block;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.vehicle-price .price {
+  font-size: 1.6rem;
+}
+
+.vehicle-specs {
+  margin: 14px 0;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.spec-row dt {
+  font-weight: 800;
+}
+
+.spec-row dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.section-heading {
+  margin: 10px 0 6px;
+  font-size: 1.1rem;
+}
+
+.supporting {
+  margin-top: 12px;
+  color: #374151;
+}
+
+@media (min-width: 768px) {
+  .vehicle-detail {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
