@@ -54,6 +54,8 @@ invCont.buildByInventoryId = async function (req, res, next) {
   const nav = await utilities.getNav()
 
   const vehicle = await invModel.getInventoryById(inv_id)
+  console.log("DETAIL inv_id:", inv_id)
+  console.log("DETAIL vehicle:", vehicle)
 
   // 404 via error view when not found
   if (!vehicle) {
