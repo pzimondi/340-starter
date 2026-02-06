@@ -1,3 +1,4 @@
+const cookieParser = require("cookie-parser")
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const dotenv = require("dotenv").config()
@@ -62,6 +63,8 @@ app.use(async (err, req, res, next) => {
     nav
   })
 })
+
+app.use(cookieParser())
 
 const port = process.env.PORT
 const host = process.env.HOST
