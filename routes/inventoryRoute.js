@@ -6,22 +6,33 @@ const invValidate = require("../utilities/inventory-validation")
 
 // --- Management Routes ---
 
-// Route to build inventory management view
-router.get("/", utilities.handleErrors(invController.buildManagement))
+/* ****************************************
+ * Build inventory management view
+ * *************************************** */
+router.get(
+  "/",
+  utilities.handleErrors(invController.buildManagement)
+)
 
-// Route to return inventory by classification as JSON (for AJAX)
+/* ****************************************
+ * Return inventory by classification as JSON (AJAX)
+ * *************************************** */
 router.get(
   "/getInventory/:classification_id",
   utilities.handleErrors(invController.getInventoryJSON)
 )
 
-// Route to build add-classification view
+/* ****************************************
+ * Build add-classification view
+ * *************************************** */
 router.get(
   "/add-classification",
   utilities.handleErrors(invController.buildAddClassification)
 )
 
-// Route to process add-classification post
+/* ****************************************
+ * Process add-classification
+ * *************************************** */
 router.post(
   "/add-classification",
   invValidate.classificationRules(),
@@ -29,10 +40,17 @@ router.post(
   utilities.handleErrors(invController.addClassification)
 )
 
-// Route to build add-inventory view
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
+/* ****************************************
+ * Build add-inventory view
+ * *************************************** */
+router.get(
+  "/add-inventory",
+  utilities.handleErrors(invController.buildAddInventory)
+)
 
-// Route to process add-inventory post
+/* ****************************************
+ * Process add-inventory
+ * *************************************** */
 router.post(
   "/add-inventory",
   invValidate.inventoryRules(),
@@ -54,17 +72,23 @@ router.get(
 router.post(
   "/update",
   invValidate.inventoryRules(),
-  invValidate.checkInventoryData,
+  invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
 )
 
 // --- Public Display Routes ---
 
+/* ****************************************
+ * Display inventory by classification
+ * *************************************** */
 router.get(
   "/type/:classificationId",
   utilities.handleErrors(invController.buildByClassificationId)
 )
 
+/* ****************************************
+ * Display inventory item detail
+ * *************************************** */
 router.get(
   "/detail/:invId",
   utilities.handleErrors(invController.buildByInventoryId)
