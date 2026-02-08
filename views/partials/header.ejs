@@ -1,6 +1,11 @@
 <header class="site-header">
   <div class="header-inner">
     <a class="site-name" href="/">CSE Motors</a>
-    <a class="account-link" href="#" aria-label="My Account">My Account</a>
+
+    <% if (locals.loggedin) { %>
+      <a class="account-link" href="/account/" aria-label="My Account">My Account</a>
+      <% } else { %>
+        <a class="account-link" href="/account/login" aria-label="Login">My Account</a>
+        <% } %>
   </div>
 </header>

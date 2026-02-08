@@ -1,0 +1,38 @@
+<% // Unit 4 – Deliver Login View Activity // views/account/login.ejs %>
+
+    <% if (title) { %>
+        <h1>
+            <%= title %>
+        </h1>
+        <% } else { %>
+            <% /* Fallback safety */ %>
+                <% } %>
+
+                    <%- messages() %>
+
+                        <div id="loginContainer">
+                            <form id="loginForm" action="/account/login" method="post">
+                                <fieldset>
+                                    <legend>Account Login</legend>
+
+                                    <!-- Email -->
+                                    <label for="email">Email Address:</label>
+                                    <input type="email" name="account_email" id="email" required
+                                        value="<%= locals.account_email || '' %>" />
+
+                                    <!-- Password -->
+                                    <label for="password">Password:</label>
+                                    <input type="password" name="account_password" id="password" required
+                                        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+                                        title="Password must be at least 12 characters and include uppercase, lowercase, number, and special character." />
+
+                                    <!-- Submit -->
+                                    <button type="submit">Login</button>
+                                </fieldset>
+                            </form>
+
+                            <p class="login-register">
+                                Don't have an account?
+                                <a href="/account/register">Register here</a>
+                            </p>
+                        </div>

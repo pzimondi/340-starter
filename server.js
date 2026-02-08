@@ -9,16 +9,21 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities")
 const session = require("express-session")
 const flash = require("connect-flash")
+const accountRoute = require("./routes/accountRoute")
+
 
 /* ***********************
  * Middleware
  *************************/
+app.use(cookieParser())
 app.use(session({
   secret: process.env.SESSION_SECRET || 'fortress_of_solitude',
   resave: true,
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+app.use(utilities.checkJWTToken)
 
 // Messages Middleware
 app.use(flash())
@@ -44,6 +49,7 @@ app.set("layout", "./layouts/layout")
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 app.use(staticRoutes)
+app.use("/account", accountRoute)
 
 // 404 handler
 app.use(async (req, res, next) => {
@@ -63,8 +69,6 @@ app.use(async (err, req, res, next) => {
     nav
   })
 })
-
-app.use(cookieParser())
 
 const port = process.env.PORT
 const host = process.env.HOST
