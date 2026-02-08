@@ -643,3 +643,20 @@ nav>ul>li>a.active {
     gap: 28px;
   }
 }
+
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+#inventoryDisplay thead th {
+  font-weight: 700;
+}
