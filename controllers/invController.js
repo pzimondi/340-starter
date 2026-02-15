@@ -278,4 +278,28 @@ invCont.updateInventory = async function (req, res, next) {
   }
 }
 
+/* ***************************
+ * Build statistics view (Enhancement)
+ * ************************** */
+invCont.buildStatistics = async function (req, res, next) {
+  const nav = await utilities.getNav()
+  
+  try {
+    const stats = await invModel.getVehicleCountByClassification()
+    const total = await invModel.getTotalVehicleCount()
+    
+    res.render("./inventory/statistics", {
+      title: "Vehicle Statistics",
+      nav,
+      stats,
+      total,
+      errors: null
+    })
+  } catch (error) {
+    console.error("Statistics error:", error)
+    req.flash("notice", "Error loading statistics")
+    res.redirect("/")
+  }
+}
+
 module.exports = invCont

@@ -660,3 +660,223 @@ nav>ul>li>a.active {
 #inventoryDisplay thead th {
   font-weight: 700;
 }
+
+
+/* =========================
+   STATISTICS PAGE STYLES
+   Enhancement: Vehicle Statistics Dashboard
+   ========================= */
+
+.statistics-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.stats-summary {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 30px 60px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card.total {
+  border-color: var(--teal);
+  background: linear-gradient(135deg, #ffffff 0%, #f0feff 100%);
+}
+
+.stat-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stats-grid h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stats-table thead {
+  background: var(--nav);
+}
+
+.stats-table th {
+  padding: 15px;
+  text-align: left;
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stats-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.stats-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.stats-table td {
+  padding: 15px;
+}
+
+.classification-name {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.classification-name a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.classification-name a:hover {
+  color: var(--teal);
+}
+
+.count {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--teal);
+  text-align: center;
+}
+
+.percentage {
+  min-width: 200px;
+}
+
+.percentage-bar-container {
+  position: relative;
+  background: #e5e7eb;
+  height: 30px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.percentage-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal) 0%, var(--teal-dark) 100%);
+  transition: width 0.3s ease;
+}
+
+.percentage-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+  z-index: 1;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+/* Statistics page responsive design */
+@media (max-width: 768px) {
+  .statistics-container {
+    padding: 15px;
+  }
+
+  .stat-card {
+    padding: 20px 40px;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+
+  .stats-table {
+    font-size: 0.9rem;
+  }
+
+  .stats-table th,
+  .stats-table td {
+    padding: 10px;
+  }
+
+  .percentage {
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-table thead {
+    display: none;
+  }
+
+  .stats-table tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+
+  .stats-table td {
+    display: block;
+    text-align: right;
+    padding: 10px;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .stats-table td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  .classification-name:before {
+    content: "Classification: ";
+  }
+
+  .count:before {
+    content: "Count: ";
+  }
+
+  .percentage:before {
+    content: "Percentage: ";
+  }
+}

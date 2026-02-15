@@ -101,4 +101,12 @@ router.get(
   utilities.handleErrors(invController.buildByInventoryId)
 )
 
+/* ****************************************
+ * Display vehicle statistics (Enhancement)
+ * *************************************** */
+router.get(
+  "/statistics",
+  utilities.handleErrors(invController.buildStatistics)
+)
+
 module.exports = router

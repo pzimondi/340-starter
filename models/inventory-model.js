@@ -132,6 +132,41 @@ async function updateInventory(
   }
 }
 
+/* *****************************
+ * Get vehicle count by classification (Enhancement)
+ * *************************** */
+async function getVehicleCountByClassification() {
+  try {
+    const sql = `
+      SELECT 
+        c.classification_name,
+        COUNT(i.inv_id) as vehicle_count
+      FROM public.classification c
+      LEFT JOIN public.inventory i ON c.classification_id = i.classification_id
+      GROUP BY c.classification_name
+      ORDER BY vehicle_count DESC`
+    const result = await pool.query(sql)
+    return result.rows
+  } catch (error) {
+    console.error("getVehicleCountByClassification error:", error)
+    return []
+  }
+}
+
+/* *****************************
+ * Get total vehicle count (Enhancement)
+ * *************************** */
+async function getTotalVehicleCount() {
+  try {
+    const sql = `SELECT COUNT(*) as total FROM public.inventory`
+    const result = await pool.query(sql)
+    return parseInt(result.rows[0].total)
+  } catch (error) {
+    console.error("getTotalVehicleCount error:", error)
+    return 0
+  }
+}
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
@@ -139,4 +174,6 @@ module.exports = {
   addClassification,
   addInventory,
   updateInventory,
+  getVehicleCountByClassification,
+  getTotalVehicleCount
 }
