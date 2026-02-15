@@ -1,0 +1,55 @@
+<%- include("../partials/head") %>
+    <%- include("../partials/header") %>
+
+        <main>
+            <h1>
+                <%= title %>
+            </h1>
+
+            <% if (messages.notice) { %>
+                <p class="notice">
+                    <%= messages.notice %>
+                </p>
+                <% } %>
+
+                    <% if (errors) { %>
+                        <ul class="errors">
+                            <% errors.array().forEach(error=> { %>
+                                <li>
+                                    <%= error.msg %>
+                                </li>
+                                <% }) %>
+                        </ul>
+                        <% } %>
+
+                            <h2>Update Account Information</h2>
+                            <form action="/account/update" method="post">
+                                <label for="account_firstname">First Name:</label>
+                                <input type="text" id="account_firstname" name="account_firstname"
+                                    value="<%= account_firstname %>" required>
+
+                                <label for="account_lastname">Last Name:</label>
+                                <input type="text" id="account_lastname" name="account_lastname"
+                                    value="<%= account_lastname %>" required>
+
+                                <label for="account_email">Email:</label>
+                                <input type="email" id="account_email" name="account_email" value="<%= account_email %>"
+                                    required>
+
+                                <input type="hidden" name="account_id" value="<%= account_id %>">
+                                <button type="submit">Update Account</button>
+                            </form>
+
+                            <h2>Change Password</h2>
+                            <form action="/account/update-password" method="post">
+                                <label for="account_password">New Password:</label>
+                                <input type="password" id="account_password" name="account_password" required
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$"
+                                    title="Minimum 12 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 special character.">
+
+                                <input type="hidden" name="account_id" value="<%= account_id %>">
+                                <button type="submit">Change Password</button>
+                            </form>
+        </main>
+
+        <%- include("../partials/footer") %>

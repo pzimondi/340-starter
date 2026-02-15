@@ -4,13 +4,14 @@ const invController = require("../controllers/invController")
 const utilities = require("../utilities/")
 const invValidate = require("../utilities/inventory-validation")
 
-// --- Management Routes ---
+// --- Protected Management Routes ---
 
 /* ****************************************
  * Build inventory management view
  * *************************************** */
 router.get(
   "/",
+  utilities.checkJWTToken,
   utilities.handleErrors(invController.buildManagement)
 )
 
@@ -27,6 +28,7 @@ router.get(
  * *************************************** */
 router.get(
   "/add-classification",
+  utilities.checkJWTToken,
   utilities.handleErrors(invController.buildAddClassification)
 )
 
@@ -35,6 +37,7 @@ router.get(
  * *************************************** */
 router.post(
   "/add-classification",
+  utilities.checkJWTToken,
   invValidate.classificationRules(),
   invValidate.checkClassificationData,
   utilities.handleErrors(invController.addClassification)
@@ -45,6 +48,7 @@ router.post(
  * *************************************** */
 router.get(
   "/add-inventory",
+  utilities.checkJWTToken,
   utilities.handleErrors(invController.buildAddInventory)
 )
 
@@ -53,6 +57,7 @@ router.get(
  * *************************************** */
 router.post(
   "/add-inventory",
+  utilities.checkJWTToken,
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
@@ -63,6 +68,7 @@ router.post(
  * *************************************** */
 router.get(
   "/edit/:invId",
+  utilities.checkJWTToken,
   utilities.handleErrors(invController.buildEditInventory)
 )
 
@@ -71,6 +77,7 @@ router.get(
  * *************************************** */
 router.post(
   "/update",
+  utilities.checkJWTToken,
   invValidate.inventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
