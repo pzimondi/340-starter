@@ -45,7 +45,7 @@ async function getInventoryById(inv_id) {
 }
 
 /* *****************************
- * Add new classification (Assignment 4 - Task 2)
+ * Add new classification
  * *************************** */
 async function addClassification(classification_name) {
   try {
@@ -58,7 +58,7 @@ async function addClassification(classification_name) {
 }
 
 /* *****************************
- * Add new inventory item (Assignment 4 - Task 3)
+ * Add new inventory item
  * *************************** */
 async function addInventory(
   inv_make,
@@ -132,6 +132,20 @@ async function updateInventory(
   }
 }
 
+/* ***************************
+ *  Delete Inventory Item
+ * ************************** */
+async function deleteInventoryItem(inv_id) {
+  try {
+    const sql = "DELETE FROM public.inventory WHERE inv_id = $1"
+    const data = await pool.query(sql, [inv_id])
+    return data
+  } catch (error) {
+    console.error("deleteInventoryItem error:", error)
+    new Error("Delete Inventory Error")
+  }
+}
+
 /* *****************************
  * Get vehicle count by classification (Enhancement)
  * *************************** */
@@ -174,6 +188,7 @@ module.exports = {
   addClassification,
   addInventory,
   updateInventory,
+  deleteInventoryItem,
   getVehicleCountByClassification,
   getTotalVehicleCount
 }

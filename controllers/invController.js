@@ -41,7 +41,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
 }
 
 /* ***************************
- * Build Management View (Task 1)
+ * Build Management View
  * ************************** */
 invCont.buildManagement = async function (req, res, next) {
   const nav = await utilities.getNav()
@@ -56,7 +56,7 @@ invCont.buildManagement = async function (req, res, next) {
 }
 
 /* ***************************
- * Build Add Classification View (Task 2)
+ * Build Add Classification View
  * ************************** */
 invCont.buildAddClassification = async function (req, res, next) {
   const nav = await utilities.getNav()
@@ -69,7 +69,7 @@ invCont.buildAddClassification = async function (req, res, next) {
 }
 
 /* ***************************
- * Process Add Classification (Task 2)
+ * Process Add Classification
  * ************************** */
 invCont.addClassification = async function (req, res) {
   const { classification_name } = req.body
@@ -100,7 +100,7 @@ invCont.addClassification = async function (req, res) {
 }
 
 /* ***************************
- * Build Add Inventory View (Task 3)
+ * Build Add Inventory View
  * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
   const nav = await utilities.getNav()
@@ -115,7 +115,7 @@ invCont.buildAddInventory = async function (req, res, next) {
 }
 
 /* ***************************
- * Process Add Inventory (Task 3)
+ * Process Add Inventory
  * ************************** */
 invCont.addInventory = async function (req, res) {
   const nav = await utilities.getNav()
@@ -279,15 +279,58 @@ invCont.updateInventory = async function (req, res, next) {
 }
 
 /* ***************************
+ * Build delete confirmation view
+ * ************************** */
+invCont.buildDeleteConfirmation = async function (req, res, next) {
+  const inv_id = parseInt(req.params.invId, 10)
+  const nav = await utilities.getNav()
+
+  const itemData = await invModel.getInventoryById(inv_id)
+  if (!itemData) {
+    return next({ status: 404, message: "Sorry, we could not find that vehicle." })
+  }
+
+  const itemName = `${itemData.inv_make} ${itemData.inv_model}`
+
+  res.render("./inventory/delete-confirm", {
+    title: "Delete " + itemName,
+    nav,
+    errors: null,
+    inv_id: itemData.inv_id,
+    inv_make: itemData.inv_make,
+    inv_model: itemData.inv_model,
+    inv_year: itemData.inv_year,
+    inv_price: itemData.inv_price,
+  })
+}
+
+/* ***************************
+ * Process Delete Inventory Item
+ * ************************** */
+invCont.deleteInventory = async function (req, res, next) {
+  const inv_id = parseInt(req.body.inv_id, 10)
+
+  const deleteResult = await invModel.deleteInventoryItem(inv_id)
+
+  if (deleteResult.rowCount) {
+    req.flash("notice", "The vehicle was successfully deleted.")
+    res.redirect("/inv/")
+  } else {
+    req.flash("notice", "Sorry, the delete failed.")
+    res.redirect(`/inv/delete/${inv_id}`)
+  }
+}
+
+/* ***************************
  * Build statistics view (Enhancement)
  * ************************** */
 invCont.buildStatistics = async function (req, res, next) {
   const nav = await utilities.getNav()
-  
+
   try {
     const stats = await invModel.getVehicleCountByClassification()
     const total = await invModel.getTotalVehicleCount()
-    
+
     res.render("./inventory/statistics", {
       title: "Vehicle Statistics",
       nav,

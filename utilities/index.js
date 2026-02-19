@@ -97,8 +97,8 @@ Util.buildInventoryDetail = async function (vehicle) {
       </div>
       <div class="vehicle-panel">
         <p class="vehicle-badge">
-          <span class="vehicle-year">${vehicle.inv_year}</span> • 
-          <span class="vehicle-make">${vehicle.inv_make}</span> • 
+          <span class="vehicle-year">${vehicle.inv_year}</span> &bull; 
+          <span class="vehicle-make">${vehicle.inv_make}</span> &bull; 
           <span class="vehicle-model">${vehicle.inv_model}</span>
         </p>
         <p class="vehicle-price"><strong>${price}</strong></p>
@@ -163,6 +163,18 @@ Util.checkJWTToken = (req, res, next) => {
     )
   } else {
     next()
+  }
+}
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
   }
 }
 

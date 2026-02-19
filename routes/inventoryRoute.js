@@ -11,7 +11,7 @@ const invValidate = require("../utilities/inventory-validation")
  * *************************************** */
 router.get(
   "/",
-  utilities.checkJWTToken,
+  utilities.checkLogin,
   utilities.handleErrors(invController.buildManagement)
 )
 
@@ -28,7 +28,7 @@ router.get(
  * *************************************** */
 router.get(
   "/add-classification",
-  utilities.checkJWTToken,
+  utilities.checkLogin,
   utilities.handleErrors(invController.buildAddClassification)
 )
 
@@ -37,7 +37,7 @@ router.get(
  * *************************************** */
 router.post(
   "/add-classification",
-  utilities.checkJWTToken,
+  utilities.checkLogin,
   invValidate.classificationRules(),
   invValidate.checkClassificationData,
   utilities.handleErrors(invController.addClassification)
@@ -48,7 +48,7 @@ router.post(
  * *************************************** */
 router.get(
   "/add-inventory",
-  utilities.checkJWTToken,
+  utilities.checkLogin,
   utilities.handleErrors(invController.buildAddInventory)
 )
 
@@ -57,7 +57,7 @@ router.get(
  * *************************************** */
 router.post(
   "/add-inventory",
-  utilities.checkJWTToken,
+  utilities.checkLogin,
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
@@ -68,7 +68,7 @@ router.post(
  * *************************************** */
 router.get(
   "/edit/:invId",
-  utilities.checkJWTToken,
+  utilities.checkLogin,
   utilities.handleErrors(invController.buildEditInventory)
 )
 
@@ -77,10 +77,28 @@ router.get(
  * *************************************** */
 router.post(
   "/update",
-  utilities.checkJWTToken,
+  utilities.checkLogin,
   invValidate.inventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
+)
+
+/* ****************************************
+ * Deliver delete confirmation view
+ * *************************************** */
+router.get(
+  "/delete/:invId",
+  utilities.checkLogin,
+  utilities.handleErrors(invController.buildDeleteConfirmation)
+)
+
+/* ****************************************
+ * Process inventory delete
+ * *************************************** */
+router.post(
+  "/delete",
+  utilities.checkLogin,
+  utilities.handleErrors(invController.deleteInventory)
 )
 
 // --- Public Display Routes ---

@@ -4,7 +4,6 @@
 const express = require("express")
 const router = new express.Router()
 
-// Utilities and controller
 const utilities = require("../utilities")
 const accountController = require("../controllers/accountController")
 const regValidate = require("../utilities/account-validation")
@@ -44,7 +43,7 @@ router.post(
  **************************/
 router.get(
   "/",
-  utilities.checkJWTToken, // ensure user is logged in
+  utilities.checkLogin,
   utilities.handleErrors(accountController.buildAccountManagement)
 )
 
@@ -53,7 +52,7 @@ router.get(
  **************************/
 router.get(
   "/update/:account_id",
-  utilities.checkJWTToken,
+  utilities.checkLogin,
   utilities.handleErrors(accountController.buildAccountUpdate)
 )
 
@@ -62,7 +61,7 @@ router.get(
  **************************/
 router.post(
   "/update",
-  utilities.checkJWTToken,
+  utilities.checkLogin,
   regValidate.updateAccountRules(),
   regValidate.checkUpdateData,
   utilities.handleErrors(accountController.updateAccount)
@@ -73,7 +72,7 @@ router.post(
  **************************/
 router.post(
   "/update-password",
-  utilities.checkJWTToken,
+  utilities.checkLogin,
   regValidate.updatePasswordRules(),
   regValidate.checkUpdatePasswordData,
   utilities.handleErrors(accountController.updatePassword)
